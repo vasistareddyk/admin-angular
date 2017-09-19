@@ -1,0 +1,150 @@
+<div class="animated fadeIn">
+
+
+    <div class="row" ng-controller="EditBlog">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Basic Form</strong>Elements
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Static</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="select" class="col-md-3 form-control-label">Blog Category</label>
+                            <div class="col-md-9">
+                                <select class="form-control form-control-sm" name="select" id="select">
+                                    <option value="{{opt.id}}" ng-repeat="opt in blogCategories">{{opt.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Title</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control"  ng-model="EditBlogS.title"/>
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Slug</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditBlogS.slug}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="select" class="col-md-3 form-control-label">Blog Category</label>
+                            <div class="col-md-9">
+                                <select class="form-control form-control-sm" name="select" id="select">
+                                    <option value="0"> Default</option>
+                                    <option value="0" >Dcoument</option>
+                                    <option value="0" >youtube</option>
+                                </select>
+                            </div>
+                        </div>            
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+                            <div class="col-md-9">
+                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" >{{EditBlogS.content}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="select">Select</label>
+                            <div class="col-md-9">
+                                <select id="select" name="select" class="form-control">
+                                    <option value="0">Please select</option>
+                                    <option value="1">Option #1</option>
+                                    <option value="2">Option #2</option>
+                                    <option value="3">Option #3</option>
+                                </select>
+                            </div>
+                        </div>                     
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="file-input">Banner image</label>
+                            <div class="col-md-9">
+                                <input type="file" id="file-input" name="file-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="file-input">Attachment</label>
+                            <div class="col-md-9">
+                                <input type="file" id="file-input" name="file-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">No of comments</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditblogS.no_of_comments || 0}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">No of likes</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditblogS.no_of_likes|| 0}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">no of views</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditblogS.no_of_views|| 0}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">H1 name</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditBlogS.h1name}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Meta Title</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditBlogS.meta_title}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Meta Descrition</label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{EditBlogS.meta_description}}">
+                                <span class="help-block">This is a help text</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="select">Author</label>
+                            <div class="col-md-9">
+                                <select id="select" name="select" class="form-control">
+                                    <option value="0" ng-repeat="aut in blogAuthors">{{aut.first_name}}</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="select">Status</label>
+                            <div class="col-md-9">
+                                <select id="select" name="select" class="form-control">
+                                    <option value="0">Inactive</option>
+                                    <option value="1">Active</option>
+                                </select>
+                            </div>
+                        </div>   
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button ng-click="SendData()" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                </div>
+            </div>            
+        </div>
+        
+    </div>
+
+    <!--/.row-->
+</div>

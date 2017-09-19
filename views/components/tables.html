@@ -1,0 +1,49 @@
+<div class="animated fadeIn" ng-controller="blogEdit">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Combined All Table
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <a ui-sref-active="active"  ui-sref="app.Add" href="javascript:void(0);">Add Blog</a>
+                            </tr>                            
+                            <tr ng-repeat="blg in blogedits">
+                                <td><a ui-sref-active="active" ui-sref="app.Edit" href="javascript:void(0);">{{blg.title}}</a></td>
+                                <td>{{blg.trainer.first_name}}</td>
+                                <td><button type="button" class="btn {{blg.status == 0 ? 'btn-danger' : 'btn-primary'}}">{{blg.status == 0 ? 'inactive' : 'active'}}</button></td>
+                                <td>
+                                   <a ui-sref-active="active" ui-sref="app.Edit({id: '{{blg.id}}'})" href="javascript:void(0);">edit</a>
+                               </td>
+                           </tr>                            
+                       </tbody>
+                   </table>
+                   <nav>
+                    <ul id="pagination-demo" class="pagination-sm" Pagination example-number="99">
+                       
+                    </ul>
+                    <a someDirective ui-sref-active="active"  ui-sref="app.Page({pageno:'1'})" href="javascript:void(0);">trest</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+<!--/.row-->
+</div>
+
+
+
+
