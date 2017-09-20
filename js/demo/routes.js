@@ -204,11 +204,22 @@ angular
 
 
 .state('app.Page',{
-    url: '/page',
-    controller:"blogEdit",
+    url: '/page/:pageno',
     templateUrl: 'views/components/tables.html',
     ncyBreadcrumb: {
-      label: 'edit'
+      label: 'pages'
+    },
+     resolve: {
+      loadPlugin: ['$ocLazyLoad', function ($ocLazyLoad) {
+        // you can lazy load files for an existing module
+        return $ocLazyLoad.load([{
+          serie: true,
+          name: 'pagination.js',
+          files: [
+            'js/jquery.twbsPagination.min.js'
+          ]
+        }]);
+      }],
     }
   })
 

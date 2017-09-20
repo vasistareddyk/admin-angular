@@ -13,32 +13,54 @@ angular
 //errors handlers
 
 //token
-var Token = '2b681c1b68d8b9681eccc34e9c238f04';
+var Token = 'e2ec03ced50da04f2e095fdb1e8c63a2';
 //token
 
 //blog table
-blogEdit.$inject = ['$scope','$http'];
-function blogEdit($scope,$http) {
-	
+blogEdit.$inject = ['$scope','$http','$compile','$stateParams'];
+function blogEdit($scope,$http,$compile,$stateParams) {
+	setTimeout(function(){
+		var mySpan = $('.page-link');
+		$compile(mySpan)($scope);
+	}, 500);
 
-	$http.get('http://localhost/prepo-server/v1/blogs/?limit=10&offset=1',{
+	var pageNo = $stateParams.pageno;
+	if(pageNo < 0){
+		pageNo =0
+	}else{
+		pageNo = pageNo -1
+	}
+	var defaultOpts = {
+		totalPages: 20
+	};
+	$('#pagination-demo').twbsPagination(defaultOpts);
+	$scope.pagination_click=function(){
+		var currentPage = $('#pagination-demo').twbsPagination('getCurrentPage');
+		$('#pagination-demo').twbsPagination('destroy');
+		$('#pagination-demo').twbsPagination($.extend({}, defaultOpts, {
+			startPage: currentPage
+		}))
+	}
+
+	$http.get('http://localhost/prepo-server/v1/blogs/?limit=10&offset='+pageNo+'',{
 		headers: {
 			'P-Auth-Token': ''+Token+''
 		}
 	}).then(function(response) {   
 		console.log(response)
-		$scope.blogedits = response.data.result;   
+		$scope.blogedits = response.data.result;
+		;   
 	})
 
 
-	/*$http.get('http://api.prepo.co.in/v1/blogs/',{
+	$http.get('http://localhost/prepo-server/v1/blogs/',{
 		headers: {
 			'P-Auth-Token': ''+Token+''
 		}
 	}).then(function(response) {   
 		$scope.bloges = response.data.result.length;
 		alert($scope.bloges)   
-	})*/
+	})
 }
 
 

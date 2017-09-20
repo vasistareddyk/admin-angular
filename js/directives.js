@@ -12,6 +12,7 @@ angular
 .directive('button', cardCollapseDirective)
 .directive('pagination',Pagination)
 
+
 //pagination
 function Pagination(){
   var directive={
@@ -27,15 +28,8 @@ function link(scope, element, attrs) {
 
   $(element).twbsPagination({
     totalPages: attrs.exampleNumber,
-    visiblePages: 7,
-    href:'#!/app/blogs'       
+    visiblePages: 7
   })
-  $('.page-link').replaceWith(function() {
-    return $('<a href="javascript:void(0);" ui-sref="app.Page" ui-sref-active="active" ></a>', {
-        html: this.innerHTML
-        
-    });
-});
 }
 }
 
