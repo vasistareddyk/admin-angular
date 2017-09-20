@@ -17,40 +17,47 @@ var Token = 'e2ec03ced50da04f2e095fdb1e8c63a2';
 //token
 
 //blog table
-blogEdit.$inject = ['$scope','$http','$compile','$stateParams'];
-function blogEdit($scope,$http,$compile,$stateParams) {
-	setTimeout(function(){
-		var mySpan = $('.page-link');
-		$compile(mySpan)($scope);
-	}, 500);
+blogEdit.$inject = ['$scope','$http','$compile','$stateParams','$state'];
+function blogEdit($scope,$http,$compile,$stateParams,$state) {
+
+
+	var vm = this; //declare an empty array
+	vm.pageno = 1; // initialize page no to 1
+	$scope.currentPage = $stateParams.pageno;
+
+  $scope.pageChangeHandler = function(num) {   
+      $state.go('app.Page', { "pageno": num});
+  };
+
 
 	var pageNo = $stateParams.pageno;
 	if(pageNo < 0){
 		pageNo =0
-	}else{
+	}else if(!pageNo){
+		pageNo = 0
+	}
+	else{
 		pageNo = pageNo -1
 	}
-	var defaultOpts = {
-		totalPages: 20
-	};
-	$('#pagination-demo').twbsPagination(defaultOpts);
-	$scope.pagination_click=function(){
-		var currentPage = $('#pagination-demo').twbsPagination('getCurrentPage');
-		$('#pagination-demo').twbsPagination('destroy');
-		$('#pagination-demo').twbsPagination($.extend({}, defaultOpts, {
-			startPage: currentPage
-		}))
-	}
+	// var vm = this;
+	// vm.pageno = 1; // initialize page no to 1
+	// vm.total_count = 0;
+	// vm.itemsPerPage = 10;
 
-	$http.get('http://localhost/prepo-server/v1/blogs/?limit=10&offset='+pageNo+'',{
-		headers: {
-			'P-Auth-Token': ''+Token+''
-		}
-	}).then(function(response) {   
-		console.log(response)
-		$scope.blogedits = response.data.result;
-		;   
-	})
+
+	vm.getData = function(pageno){
+		$http.get('http://localhost/prepo-server/v1/blogs/?limit=10&offset='+pageNo+'',{
+			headers: {
+				'P-Auth-Token': ''+Token+''
+			}
+		}).then(function(response) {   
+			console.log(response)
+			$scope.blogedits = response.data.result;
+			;   
+		})
+	};
+	vm.getData(vm.pageno);
+	
 
 
 	$http.get('http://localhost/prepo-server/v1/blogs/',{

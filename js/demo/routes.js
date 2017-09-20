@@ -160,7 +160,7 @@ angular
           serie: true,
           name: 'pagination.js',
           files: [
-            'js/jquery.twbsPagination.min.js'
+            'js/dirPagination.js'
           ]
         }]);
       }],
@@ -216,7 +216,7 @@ angular
           serie: true,
           name: 'pagination.js',
           files: [
-            'js/jquery.twbsPagination.min.js'
+            'js/dirPagination.js'
           ]
         }]);
       }],
